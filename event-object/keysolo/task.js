@@ -4,7 +4,7 @@ class Game {
     this.wordElement = container.querySelector('.word');
     this.winsElement = container.querySelector('.status__wins');
     this.lossElement = container.querySelector('.status__loss');
-
+  
     this.reset();
 
     this.registerEvents();
@@ -16,14 +16,20 @@ class Game {
     this.lossElement.textContent = 0;
   }
 
-  registerEvents() {
-    /*
-      TODO:
-      Написать обработчик события, который откликается
-      на каждый введённый символ.
-      В случае правильного ввода слова вызываем this.success()
-      При неправильном вводе символа - this.fail();
-     */
+  registerEvents() { 
+     let current = this.currentSymbol
+     let input
+     let method = this.success
+     function showKey(){
+      input = event.key
+      console.log(input)
+      if(current.textContent == input)
+        method()
+    }
+    
+    document.addEventListener('keydown', showKey)
+    console.log(input)
+    
   }
 
   success() {
