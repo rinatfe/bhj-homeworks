@@ -16,20 +16,22 @@ class Game {
     this.lossElement.textContent = 0;
   }
 
-  registerEvents() { 
-     let current = this.currentSymbol
-     let input
-     let method = this.success
-     function showKey(){
-      input = event.key
-      console.log(input)
-      if(current.textContent == input)
-        method()
+  registerEvents() {
+    let list = Array.from(document.querySelectorAll('.symbol'))
+    let that = this
+    
+    function showKey(){
+      if(that.currentSymbol.textContent == event.key || that.currentSymbol.textContent.toUpperCase() == event.key) {
+        that.success()
+        let index = list.findIndex(() => document.querySelector('.symbol_current'))
+        list[index].classList.remove('symbol_current')
+        list[index + 1].classList.add('symbol_current')  
+      } else {
+        that.fail()
+      }  
     }
     
     document.addEventListener('keydown', showKey)
-    console.log(input)
-    
   }
 
   success() {
@@ -56,7 +58,6 @@ class Game {
 
   setNewWord() {
     const word = this.getWord();
-
     this.renderWord(word);
   }
 
@@ -89,6 +90,7 @@ class Game {
     this.wordElement.innerHTML = html;
 
     this.currentSymbol = this.wordElement.querySelector('.symbol_current');
+    
   }
 }
 
