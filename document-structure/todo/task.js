@@ -1,6 +1,6 @@
 const addButton = document.getElementById('tasks__add')
 const template = document.getElementById('tasks__list')
-let remove
+
 
 let handler = () => {
     template.insertAdjacentHTML('afterEnd',`<div class="task">
@@ -12,18 +12,16 @@ let handler = () => {
 }
 
 let removeHandler = ()=> {
-    remove.forEach(element => {
-      element.addEventListener('click', ()=> {
-          element.parentElement.remove()
-      })  
-    });
+    document.querySelector('.task__remove').addEventListener('click', ()=> { 
+      document.querySelector('.task__remove').parentElement.remove()
+    })
 }
 
 
 addButton.addEventListener('click', ()=> {
-    if(document.getElementById('task__input').value !== "")
-        handler()
-        remove = Array.from(document.querySelectorAll('.task__remove'))
-        removeHandler()
+    if(document.getElementById('task__input').value.trim() !== "") {
+        event.preventDefault() 
+        handler() 
+        removeHandler()}
 })
 

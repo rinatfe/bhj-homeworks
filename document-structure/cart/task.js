@@ -25,8 +25,9 @@ add.forEach(e => {
     e.addEventListener('click', ()=> {
         let cartItems = Array.from(document.querySelectorAll('.cart__product'))
         if(cartItems.some(i => i.dataset.id == product[ind].dataset.id)){
+            let index = cartItems.findIndex(i => i.dataset.id == product[ind].dataset.id)
             let num = Number(document.querySelector('.cart__product-count').innerHTML)
-            document.querySelector('.cart__product-count').innerHTML = num + Number(item[ind].innerHTML)
+            cartItems[index].firstElementChild.innerText = num + Number(item[ind].innerHTML)
         } else {    
         cart.insertAdjacentHTML('afterBegin', `
             <div class="cart__product" data-id="${document.querySelectorAll('.product')[ind].dataset.id}">
