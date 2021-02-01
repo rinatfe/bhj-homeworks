@@ -13,15 +13,18 @@ let handler = () => {
 
 let removeHandler = ()=> {
     document.querySelector('.task__remove').addEventListener('click', ()=> { 
-      document.querySelector('.task__remove').parentElement.remove()
+      event.target.parentElement.remove()
     })
 }
 
 
 addButton.addEventListener('click', ()=> {
+    console.log(event.currentTarget.parentElement)
     if(document.getElementById('task__input').value.trim() !== "") {
-        event.preventDefault() 
+        event.preventDefault()
         handler() 
-        removeHandler()}
+        document.querySelector('.tasks__input').value = '' 
+        removeHandler()
+    }
 })
 
