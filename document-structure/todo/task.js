@@ -26,5 +26,7 @@ addButton.addEventListener('click', ()=> {
         document.querySelector('.tasks__input').value = '' 
         removeHandler()
     }
+    document.querySelector('.tasks__input').value = ''
+    event.preventDefault()
 })
 
